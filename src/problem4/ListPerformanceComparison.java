@@ -1,6 +1,8 @@
 package problem4;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 public class ListPerformanceComparison {
 
@@ -17,8 +19,8 @@ public class ListPerformanceComparison {
 
         System.out.println("---- Populate both lists ----");
         for (int i = 0; i < SIZE; i++) {
-            //code here
-            //code here
+            arrayList.add(ThreadLocalRandom.current().nextInt(100000));
+            linkedList.add(ThreadLocalRandom.current().nextInt(100000));
         }
 
         // 2️⃣ Random insertions and deletions
@@ -41,6 +43,13 @@ public class ListPerformanceComparison {
         long start = System.nanoTime();
 
         // insert your code here
+        int k=random.nextInt(SIZE);
+        int k2=random.nextInt(SIZE);
+
+        int value=random.nextInt(SIZE);
+        list.add(k,value);
+        list.remove(k2);
+
 
         long end = System.nanoTime();
         System.out.printf("%s - Random insert/delete: %.3f ms%n",
@@ -55,10 +64,29 @@ public class ListPerformanceComparison {
         // Insertions at beginning and end
 
         // add your code here
+        if (name.equals("ArrayList")){
+            list.add(0,7);
+            list.add(7);
+        }
+        else{
+            LinkedList<Integer> list2= (LinkedList<Integer>) list;
+            list2.addFirst(7);
+            list2.addLast(7);
+        }
 
         // Deletions at beginning and end
 
         // add your code here
+        if (name.equals("ArrayList")){
+            list.remove(0);
+            list.remove(SIZE-1);
+        }
+        else{
+            LinkedList<Integer> list2= (LinkedList<Integer>) list;
+            list2.removeFirst();
+            list2.removeLast();
+        }
+
 
         long end = System.nanoTime();
         System.out.printf("%s - Sequential insert/delete (start/end): %.3f ms%n",
@@ -74,6 +102,9 @@ public class ListPerformanceComparison {
         long sum = 0;
         // sum of the all elements in the list
        // insert your code here
+        int k=random.nextInt(SIZE);
+        int n=list.get(k);
+
 
         long end = System.nanoTime();
         System.out.printf("%s - Random access (get): %.3f ms%n",
